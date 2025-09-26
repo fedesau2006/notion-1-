@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Widget Orologio Digitale Retro</title>
+    <title>Widget Orologio Digitale Retro Fissato</title>
     <style>
         /* Variabili CSS (Centralizzate e complete per tweaking facile) */
         :root {
             --display-color: #ffe6f2; 
-            --glow-color: #ff3399;  
+            --glow-color: #ff3399; 
             
-            /* ⭐ VALORI DI POSIZIONAMENTO (Finali) ⭐ */
-            --rotation-angle: -5.5deg;      
-            --offset-x: -5.5vw;             
-            --clock-offset-y: -14vh;        
-            --greeting-offset-y: -11.0vh;   
+            /* ⭐ VALORI DI POSIZIONAMENTO FISSO (Unità 'em' per stabilità relativa) ⭐ */
+            --rotation-angle: -5.5deg;       
+            /* Offset X basato sulla dimensione del font del CLOCK (circa 3.5em) */
+            --offset-x: -1.75em; 
+            /* Offset Y basato sulla dimensione del font del CLOCK */
+            --clock-offset-y: -7.0em; 
+            --greeting-offset-y: -6.0em; 
 
-            /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
-            --clock-font-size: 3.5vw;
-            --greeting-font-size: 0.9vw;
+            /* ⭐ VALORI DI FONT FISSI (Unità 'em' per proporzione) ⭐ */
+            /* Ora 'em' è relativo al font-size di default del browser */
+            --clock-font-size: 3.5em; 
+            --greeting-font-size: 0.5em; 
 
             /* ⭐ VALORI 3D GLOBALI (Invariati) ⭐ */
-            --perspective-value: 1000px; 
-            --rotateX-value: 6deg;      
+            --perspective-value: 1000px;
+            --rotateX-value: 6deg; 
         }
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-        /* Importiamo un peso maggiore per Noto Sans JP se il 700 è disponibile */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
@@ -37,7 +39,9 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            perspective: var(--perspective-value); 
+            perspective: var(--perspective-value);
+            /* Aumenta il font-size base per rendere più stabile la proporzione in EM */
+            font-size: 16px; 
         }
 
         .widget-container {
@@ -47,14 +51,14 @@
             left: 56.5%; 
             box-sizing: border-box;
             
-            /* Trasformazioni 3D/prospettiche */
+            /* Trasformazioni 3D/prospettiche (Invariate) */
             transform: 
                 translate(-50%, -50%) 
                 rotateX(var(--rotateX-value)) 
                 rotateY(-3deg) 
                 skewX(7deg) 
                 scale(0.85) 
-                translate(15vw, 15vh); 
+                translate(15vw, 15vh); /* Mantenuto VW/VH qui per il posizionamento sulla scrivania */
 
             /* Flexbox per centrare */
             display: flex;
@@ -77,10 +81,13 @@
 
         #clock {
             font-family: 'Orbitron', monospace; 
+            /* ⭐ OPTIMIZED: Usa EM per la dimensione ⭐ */
             font-size: var(--clock-font-size); 
             font-weight: 500; 
-            letter-spacing: 0.1vw; 
+            /* ⭐ OPTIMIZED: Usa EM per lo spacing ⭐ */
+            letter-spacing: 0.1em; 
             
+            /* ⭐ OPTIMIZED: Usa EM per il posizionamento ⭐ */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--offset-x), var(--clock-offset-y)); 
@@ -88,29 +95,22 @@
 
         #greeting {
             font-family: 'Noto Sans JP', sans-serif; 
+            /* ⭐ OPTIMIZED: Usa EM per la dimensione ⭐ */
             font-size: var(--greeting-font-size); 
             
-            /* ⭐ AGGIORNATO: Spessore maggiore per visibilità ⭐ */
             font-weight: 700; 
-            
             margin-top: 0; 
             
+            /* ⭐ OPTIMIZED: Usa EM per il posizionamento ⭐ */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--offset-x), var(--greeting-offset-y)); 
 
             text-shadow: none; 
-            /* ⭐ AGGIORNATO: Opacità quasi piena per visibilità ⭐ */
             opacity: 0.95; 
         }
 
-        /* --- Media queries (Reattività) --- */
-        @media (max-width: 768px) {
-             :root {
-                 --clock-font-size: 6.5vw;
-                 --greeting-font-size: 1.8vw;
-             }
-        }
+        /* ⚠️ Rimosse le Media Queries basate su VW/VH per evitare instabilità ⚠️ */
     </style>
 </head>
 <body>

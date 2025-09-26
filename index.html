@@ -8,11 +8,11 @@
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
             
-            /* ⭐ VALORI DI POSIZIONAMENTO AGGIORNATI ⭐ */
-            --rotation-angle: -5.5deg;      /* ⭐ NUOVO: Rotazione antioraria a -5.5 gradi ⭐ */
-            --offset-x: -5.5vw;             /* ⭐ NUOVO: Offset orizzontale a -5.5vw (sposta leggermente a destra) ⭐ */
-            --clock-offset-y: -14vh;        /* Altezza ora (-14vh) invariata */
-            --greeting-offset-y: -11.0vh;   /* ⭐ NUOVO: Avvicinamento saluto a -11vh ⭐ */
+            /* ⭐ VALORI DI POSIZIONAMENTO (Finali) ⭐ */
+            --rotation-angle: -5.5deg;      
+            --offset-x: -5.5vw;             
+            --clock-offset-y: -14vh;        
+            --greeting-offset-y: -11.0vh;   
 
             /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
             --clock-font-size: 3.5vw;
@@ -25,7 +25,8 @@
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap');
+        /* Importiamo un peso maggiore per Noto Sans JP se il 700 è disponibile */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
             height: 100vh;
@@ -46,7 +47,7 @@
             left: 56.5%; 
             box-sizing: border-box;
             
-            /* Trasformazioni 3D/prospettiche (invariate) */
+            /* Trasformazioni 3D/prospettiche */
             transform: 
                 translate(-50%, -50%) 
                 rotateX(var(--rotateX-value)) 
@@ -80,7 +81,6 @@
             font-weight: 500; 
             letter-spacing: 0.1vw; 
             
-            /* Applica tutti i nuovi offset */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--offset-x), var(--clock-offset-y)); 
@@ -89,17 +89,19 @@
         #greeting {
             font-family: 'Noto Sans JP', sans-serif; 
             font-size: var(--greeting-font-size); 
-            font-weight: 400;
+            
+            /* ⭐ AGGIORNATO: Spessore maggiore per visibilità ⭐ */
+            font-weight: 700; 
             
             margin-top: 0; 
             
-            /* Applica tutti i nuovi offset */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--offset-x), var(--greeting-offset-y)); 
 
             text-shadow: none; 
-            opacity: 0.8;
+            /* ⭐ AGGIORNATO: Opacità quasi piena per visibilità ⭐ */
+            opacity: 0.95; 
         }
 
         /* --- Media queries (Reattività) --- */

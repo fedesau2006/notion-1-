@@ -3,15 +3,20 @@
 <head>
     <title>Widget Orologio Digitale Retro</title>
     <style>
-        /* Variabili CSS */
+        /* Variabili CSS (Centralizzate e complete per tweaking facile) */
         :root {
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
-            /* ⭐ NUOVI VALORI DEFINITIVI RICHIESTI ⭐ */
-            --rotation-angle: -6.0deg;      /* Rotazione antioraria a -6 gradi */
-            --clock-offset-y: -12vh;       /* Altezza ora a -12vh */
-            --greeting-offset-y: -6.0vh;     /* Avvicinamento saluto a -6vh */
-            --local-offset-x: -6.0vw;      /* Offset orizzontale invariato */
+            
+            /* ⭐ VALORI DI POSIZIONAMENTO (Facilmente modificabili) ⭐ */
+            --rotation-angle: -6.0deg;      /* Rotazione antioraria */
+            --offset-x: -6.0vw;             /* Offset orizzontale per entrambi */
+            --clock-offset-y: -12vh;        /* Altezza ora (spostamento verso l'alto) */
+            --greeting-offset-y: -6.0vh;     /* Avvicinamento saluto (spostamento verso l'alto) */
+
+            /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
+            --clock-font-size: 3.5vw;
+            --greeting-font-size: 0.9vw;
         }
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
@@ -31,14 +36,13 @@
         }
 
         .widget-container {
-            /* --- POSIZIONAMENTO E TRASFORMAZIONE --- */
+            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE --- */
             position: absolute;
             top: 55%; 
             left: 56.5%; 
-            
             box-sizing: border-box;
             
-            /* Trasformazioni 3D/prospettiche */
+            /* Trasformazioni 3D/prospettiche (raggruppate) */
             transform: 
                 translate(-50%, -50%) 
                 rotateX(4deg) 
@@ -47,7 +51,7 @@
                 scale(0.85) 
                 translate(15vw, 15vh); 
 
-            /* Flexbox per centrare orizzontalmente e verticalmente */
+            /* Flexbox per centrare */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -66,30 +70,38 @@
                 0 0 15px var(--glow-color);
         }
 
+        /* ⭐ NUOVO: Classe per le trasformazioni comuni (Rotazione + Offset X) ⭐ */
+        .local-transform {
+             /* Applicata a #clock e #greeting per evitare ripetizioni */
+            transform: 
+                rotate(var(--rotation-angle)) 
+                translate(var(--offset-x), 0);
+        }
+
         #clock {
             font-family: 'Orbitron', monospace; 
-            font-size: 3.5vw; 
+            font-size: var(--clock-font-size); 
             font-weight: 500; 
             letter-spacing: 0.1vw; 
             
-            /* ✅ Rotazione a -6.0deg e Altezza a -12vh */
+            /* Unisce la trasformazione comune e l'offset Y specifico */
             transform: 
                 rotate(var(--rotation-angle)) 
-                translate(var(--local-offset-x), var(--clock-offset-y)); 
+                translate(var(--offset-x), var(--clock-offset-y)); 
         }
 
         #greeting {
             font-family: 'Noto Sans JP', sans-serif; 
-            font-size: 0.9vw; 
+            font-size: var(--greeting-font-size); 
             font-weight: 400;
             
-            /* Rimuovo il margin-top che causava problemi */
+            /* Rimosso margin-top (conflittuale) */
             margin-top: 0; 
             
-            /* ✅ Rotazione a -6.0deg e Avvicinamento a -6.0vh (translateY) */
+            /* Unisce la trasformazione comune e l'offset Y specifico */
             transform: 
                 rotate(var(--rotation-angle)) 
-                translate(var(--local-offset-x), var(--greeting-offset-y)); 
+                translate(var(--offset-x), var(--greeting-offset-y)); 
 
             text-shadow: none; 
             opacity: 0.8;
@@ -97,19 +109,13 @@
 
         /* --- Media queries (Reattività) --- */
         @media (max-width: 768px) {
-             #clock { 
-                 font-size: 6.5vw; 
-                 transform: 
-                    rotate(var(--rotation-angle)) 
-                    translate(var(--local-offset-x), var(--clock-offset-y)); 
+             :root {
+                 --clock-font-size: 6.5vw;
+                 --greeting-font-size: 1.8vw;
+                 /* mantenere gli offset in vh/vw (non-font) invariati */
              }
-             #greeting { 
-                 font-size: 1.8vw; 
-                 margin-top: 0; 
-                 transform: 
-                    rotate(var(--rotation-angle)) 
-                    translate(var(--local-offset-x), var(--greeting-offset-y));
-             } 
+             
+             /* Le trasformazioni rimangono le stesse grazie all'uso delle variabili */
         }
     </style>
 </head>
@@ -133,8 +139,6 @@
         }
 
         function setGreetingAndNextInterval() {
-            updateClock(); 
-            
             const now = new Date();
             const hour = now.getHours();
             const greetingElement = document.getElementById('greeting');
@@ -157,6 +161,7 @@
             
             greetingElement.textContent = greetingText;
 
+            // Calcola quando sarà la prossima modifica del saluto
             const nextChangeTime = new Date(now);
             if (nextHourChange > 23) {
                 nextChangeTime.setDate(now.getDate() + 1);
@@ -168,8 +173,17 @@
             setTimeout(setGreetingAndNextInterval, timeToWait);
         }
 
-        setInterval(updateClock, 1000);
-        setGreetingAndNextInterval(); 
+        // ⭐ NUOVA FUNZIONE: Avvia tutto in modo pulito all'inizio ⭐
+        function initWidget() {
+            // Aggiorna l'orologio ogni secondo
+            setInterval(updateClock, 1000);
+            
+            // Imposta subito l'ora e il saluto, e programma la successiva modifica del saluto
+            updateClock();
+            setGreetingAndNextInterval(); 
+        }
+
+        initWidget();
     </script>
 </body>
 </html>

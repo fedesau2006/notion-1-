@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget - Rotazione Negativa e Bold</title>
+    <title>Retro Clock Widget - Rosa Digitale e Rotazione -6.9°</title>
     <style>
         /* ==================================== */
         /* CONFIGURAZIONE BASE E COLORI        */
         /* ==================================== */
         :root {
-            /* Colore del display (testo) */
-            --display-color: #a3c2c2;
-            /* Bagliore soft */
-            --glow-color: #4dffff;
+            /* ⭐ AGGIORNATO: Colore del display (testo) Rosa Chiaro ⭐ */
+            --display-color: #ffe6f0; 
+            /* ⭐ AGGIORNATO: Bagliore Rosa Caldo/Neon ⭐ */
+            --glow-color: #ff99cc; 
             
-            /* ⭐ AGGIORNATO: Rotazione -7.5 gradi (SENSO ORARIO) per allineare ⭐ */
-            --display-rotation-compensation: -7.5deg; 
+            /* ⭐ ROTAZIONE FINALE: -6.9 gradi (SENSO ORARIO) ⭐ */
+            --display-rotation-compensation: -6.9deg; 
             
             /* Dimensioni Font */
             --clock-size: 3em; 
@@ -22,8 +22,8 @@
             font-size: 16px; 
         }
 
-        /* Font Imports */
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@700&display=swap'); /* Importato il peso 700 */
+        /* Font Imports: Orbitron per look display digitale geometrico */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
 
         /* ==================================== */
@@ -82,28 +82,29 @@
             justify-content: center; 
             align-items: center; 
 
-            /* Rotazione compensativa (-7.5deg orario) */
+            /* Rotazione compensativa (-6.9deg orario) */
             transform: rotate(var(--display-rotation-compensation)); 
         }
 
         /* ==================================== */
-        /* STILI TESTO (BAGLIORE MORBIDO)      */
+        /* STILI TESTO (ROSA DIGITALE)          */
         /* ==================================== */
         .digitale-glow {
             color: var(--display-color); 
             line-height: 1;
             white-space: nowrap;
             text-align: center;
-            /* Bagliore più tenue e meno diffuso */
+            /* Bagliore morbido e rosato */
             text-shadow:
                 0 0 5px var(--glow-color),
                 0 0 10px var(--glow-color);
         }
 
         #clock {
-            font-family: 'Share Tech Mono', monospace; 
+            /* ⭐ AGGIORNATO: Font Orbitron per look digitale ⭐ */
+            font-family: 'Orbitron', monospace; 
             font-size: var(--clock-size); 
-            /* ⭐ AGGIORNATO: Testo più spesso ⭐ */
+            /* Peso Audace */
             font-weight: 700; 
             letter-spacing: 0.1vw; 
             line-height: 0.9; 
@@ -116,7 +117,7 @@
             margin-top: 0.1em;
             text-shadow: none; 
             opacity: 0.95; 
-            /* Colore del saluto coerente */
+            /* Colore del saluto coerente con il rosa */
             color: var(--glow-color);
         }
     </style>

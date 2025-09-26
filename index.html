@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget - Scalabile Perfetto</title>
+    <title>Retro Clock Widget - Finito</title>
     <style>
         /* CONFIGURAZIONE DI BASE E SCALATURA */
         :root {
@@ -10,14 +10,14 @@
             --rotation-angle: -5.5deg;
             
             /* ⭐ AGGIORNATO: Dimensioni del testo finali in EM ⭐ */
-            --clock-size: 2em; 
+            --clock-size: 3em; 
             --greeting-size: 1em; 
             
             font-size: 16px; 
         }
         
-        /* Font Imports */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+        /* Font Imports: VT323 per l'effetto sveglia/matrice */
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
@@ -38,7 +38,6 @@
             left: 56.5%; 
             box-sizing: border-box;
             
-            /* Chiave di scalabilità */
             width: 35vw; 
             height: 35vh; 
             
@@ -55,13 +54,12 @@
         #clock-display-area {
             position: absolute;
             
-            /* Calibrazione dimensioni (possono essere affinate) */
             width: 40%; 
             height: 35%; 
             
-            /* ⭐ AGGIORNATO: Posizionamento finale per centrare il testo ⭐ */
+            /* ⭐ AGGIORNATO: Spostamento più a sinistra (ridotto da 20% a 15%) ⭐ */
             top: -3%; 
-            left: 20%; 
+            left: 15%; 
 
             /* Centramento del testo */
             display: flex;
@@ -86,10 +84,13 @@
         }
 
         #clock {
-            font-family: 'Orbitron', monospace; 
+            /* ⭐ AGGIORNATO: Nuovo font VT323 (stile sveglia retro) ⭐ */
+            font-family: 'VT323', monospace; 
             font-size: var(--clock-size); 
             font-weight: 500; 
             letter-spacing: 0.1vw; 
+            /* Aggiunge spazio aggiuntivo per centrare meglio il font VT323 */
+            line-height: 0.9; 
         }
 
         #greeting {

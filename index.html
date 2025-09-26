@@ -3,32 +3,34 @@
 <head>
     <title>Widget Orologio Digitale Retro</title>
     <style>
-        /* Variabili CSS (Centralizzate e complete per tweaking facile) */
+        /* Variabili CSS */
         :root {
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
             
-            /* ⭐ NUOVE VARIABILI PER LA SCALA E POSIZIONAMENTO FISSO ⭐ */
-            --rotation-angle: -5.5deg; /* La rotazione del testo sul display */
-            --clock-font-size-px: 19px; /* Dimensione fissa in pixel */
-            --greeting-font-size-px: 5px; /* Dimensione fissa in pixel */
+            /* ⭐ VALORI CALIBRATI SUL DISPLAY ⭐ */
+            --rotation-angle: -5.5deg; /* Rotazione del testo sul display */
+            --clock-font-size-px: 18px; /* Dimensione fissa in pixel */
+            --greeting-font-size-px: 6px; /* Dimensione fissa in pixel */
             
-            /* ⭐ VALORI 3D GLOBALI (Invariati) ⭐ */
+            /* VALORI 3D GLOBALI (non cambiano) */
             --perspective-value: 1000px; 
             --rotateX-value: 6deg;      
         }
         
-        /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
+        /* Font */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
-            /* Manteniamo body come contenitore dell'immagine */
             height: 100vh;
             margin: 0;
             padding: 0;
             position: relative;
-            background-image: url('https://github.com/fedesau2006/notion-1-/raw/main/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
+            
+            /* ⭐ AGGIORNATO: URL dell'immagine corretto ⭐ */
+            background-image: url('https://github.com/fedesau2006/notion-1-/raw/32181b9ff42405557af0d5b0aff64e4c238b2685/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
+            
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -36,49 +38,47 @@
         }
 
         .widget-container {
-            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE del WIDGET --- */
+            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE --- */
             position: absolute;
-            top: 55%; 
-            left: 56.5%; 
+            top: 55%; /* Punto di ancoraggio del contenitore */
+            left: 56.5%; /* Punto di ancoraggio del contenitore */
             box-sizing: border-box;
             
-            /* Trasformazioni 3D/prospettiche (Devono rimanere, scalano tutto) */
+            /* ⭐ RIPRISTINATO: Trasformazioni 3D/prospettiche ⭐ */
             transform: 
                 translate(-50%, -50%) 
                 rotateX(var(--rotateX-value)) 
                 rotateY(-3deg) 
                 skewX(7deg) 
                 scale(0.85) 
-                translate(15vw, 15vh); 
+                translate(15vw, 15vh); /* Spostamento aggiuntivo per posizionare il TV nell'immagine */
 
-            /* NON CENTRIAMO QUI, MA NEL NUOVO CONTENITORE DEL DISPLAY */
             width: auto;
             height: auto;
         }
 
-        /* ⭐ NUOVO CONTENITORE PER FISSARE LA POSIZIONE DEL TESTO ⭐
-        Questo div agisce come il display del TV. Le sue dimensioni sono in pixel 
-        o in percentuale fissa, e la sua posizione è assoluta rispetto al widget-container.
-        */
+        /* ⭐ CONTENITORE DEL DISPLAY PER IL POSIZIONAMENTO FISSO ⭐ */
         #clock-display-area {
             position: absolute;
-            /* Le misure e posizioni qui devono essere calibrate in base all'immagine */
-            width: 80px; /* Larghezza fissa del display (calibrare) */
-            height: 50px; /* Altezza fissa del display (calibrare) */
             
-            /* Posizionamento ASSOLUTO rispetto al .widget-container */
-            top: 25px; /* Calibra finché non è sul display */
-            left: 50px; /* Calibra finché non è sul display */
+            /* ⭐ CALIBRATO: Dimensioni del display in pixel (devono coprire il quadrante) ⭐ */
+            width: 85px; 
+            height: 50px; 
+            
+            /* ⭐ CALIBRATO: Posizionamento assoluto per centrare il testo sul quadrante ⭐ */
+            top: 25px; 
+            left: 55px; 
 
-            /* Flexbox per centrare orizzontalmente e verticalmente il testo nel quadrante */
+            /* Flexbox per centrare il testo nell'area del display */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centra verticalmente */
-            align-items: center; /* Centra orizzontalmente */
+            justify-content: center; 
+            align-items: center; 
 
-            /* ⭐ APPLICA QUI LA TRASFORMAZIONE DI ROTAZIONE E TRASLAZIONE ⭐ */
-            transform: 
-                rotate(var(--rotation-angle)); /* Solo rotazione */
+            /* Rotazione del display */
+            transform: rotate(var(--rotation-angle)); 
+            
+            /* A scopo di debug, puoi aggiungere: border: 1px solid red; */
         }
 
         .digitale-glow {
@@ -89,31 +89,28 @@
                 1px 1px 0px rgba(0, 0, 0, 0.3), 
                 0 0 5px var(--glow-color),
                 0 0 15px var(--glow-color);
-            text-align: center; /* Assicurati che il testo sia centrato */
+            text-align: center;
         }
 
         #clock {
             font-family: 'Orbitron', monospace; 
-            font-size: var(--clock-font-size-px); /* ⭐ USIAMO I PIXEL ⭐ */
+            font-size: var(--clock-font-size-px); /* Fisso in pixel */
             font-weight: 500; 
             letter-spacing: 0.1vw; 
-            /* RIMOZIONE DELLA TRASFORMAZIONE DI TRANSLATE */
-            transform: none; 
+            transform: none; /* Nessuna trasformazione aggiuntiva */
         }
 
         #greeting {
             font-family: 'Noto Sans JP', sans-serif; 
-            font-size: var(--greeting-font-size-px); /* ⭐ USIAMO I PIXEL ⭐ */
+            font-size: var(--greeting-font-size-px); /* Fisso in pixel */
             font-weight: 700; 
-            margin-top: 2px; /* Piccolo margine per separare da #clock */
-            /* RIMOZIONE DELLA TRASFORMAZIONE DI TRANSLATE E ROTATE */
-            transform: none; 
+            margin-top: 2px;
+            transform: none; /* Nessuna trasformazione aggiuntiva */
             text-shadow: none; 
             opacity: 0.95; 
         }
 
-        /* ⭐ RIMUOVENDO vw/vh, LE MEDIA QUERIES NON SONO PIÙ NECESSARIE PER LA SCALATURA del TESTO ⭐ */
-        /* Se vuoi che l'intero TV si ridimensioni su schermi piccoli, modifica lo 'scale(0.85)' nel .widget-container */
+        /* Rimosse le media queries non necessarie grazie alle unità in px */
     </style>
 </head>
 <body>

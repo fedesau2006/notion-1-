@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget - Finito</title>
+    <title>Retro Clock Widget - Finito Perfetto</title>
     <style>
         /* CONFIGURAZIONE DI BASE E SCALATURA */
         :root {
-            /* ⭐ AGGIORNATO: Colore display più chiaro e morbido, glow meno intenso ⭐ */
-            --display-color: #f0f0f0; /* Bianco sporco / Grigio chiaro */
-            --glow-color: #ff99bb;    /* Rosa più tenue */
+            /* Colore display bianco acceso e glow intenso per l'effetto LED */
+            --display-color: #ffffff; 
+            --glow-color: #ff66a3;    
             
-            /* ⭐ AGGIORNATO: Rotazione ANTIORARIA di 0.5 gradi ⭐ */
-            --rotation-angle: 0.5deg; 
+            /* ⭐ AGGIORNATO: Rotazione ANTIORARIA aumentata a 2 gradi ⭐ */
+            --rotation-angle: 2deg; 
             
             --clock-size: 3em; 
             --greeting-size: 1em; 
@@ -18,8 +18,8 @@
             font-size: 16px; 
         }
         
-        /* Font Imports: Press Start 2P per l'effetto sveglia/pixel */
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        /* Font Imports: Share Tech Mono per l'effetto LED moderno/sottile */
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
@@ -59,7 +59,8 @@
             width: 40%; 
             height: 35%; 
             
-            top: -4%; 
+            /* ⭐ AGGIORNATO: Sollevato leggermente di più per l'allineamento finale ⭐ */
+            top: -6%; 
             left: 14%; 
 
             /* Centramento del testo */
@@ -81,17 +82,16 @@
             text-shadow:
                 1px 1px 0px rgba(0, 0, 0, 0.3), 
                 0 0 5px var(--glow-color),
-                0 0 15px var(--glow-color);
+                0 0 15px var(--glow-color),
+                0 0 30px var(--glow-color); 
         }
 
         #clock {
-            /* ⭐ AGGIORNATO: Nuovo font 'Press Start 2P' ⭐ */
-            font-family: 'Press Start 2P', monospace; 
+            font-family: 'Share Tech Mono', monospace; 
             font-size: var(--clock-size); 
             font-weight: 500; 
             letter-spacing: 0.1vw; 
-            /* Potrebbe essere necessario regolare leggermente line-height con questo font */
-            line-height: 1.1; 
+            line-height: 0.9; 
         }
 
         #greeting {

@@ -7,17 +7,18 @@
         :root {
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
-            --rotation-angle: -5.5deg;
             
-            /* ⭐ AGGIORNATO: Dimensioni del testo finali in EM ⭐ */
+            /* ⭐ AGGIORNATO: Rotazione ORARIA di 0.2 gradi (valore negativo) ⭐ */
+            --rotation-angle: -0.2deg; 
+            
             --clock-size: 3em; 
             --greeting-size: 1em; 
             
             font-size: 16px; 
         }
         
-        /* Font Imports: VT323 per l'effetto sveglia/matrice */
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        /* Font Imports: Chakra Petch per l'effetto inclinato/antico */
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
@@ -57,9 +58,9 @@
             width: 40%; 
             height: 35%; 
             
-            /* ⭐ AGGIORNATO: Spostamento più a sinistra (ridotto da 20% a 15%) ⭐ */
-            top: -3%; 
-            left: 15%; 
+            /* ⭐ AGGIORNATO: Sollevato (top: -4%) e spostato a sinistra (left: 14%) ⭐ */
+            top: -4%; 
+            left: 14%; 
 
             /* Centramento del testo */
             display: flex;
@@ -67,7 +68,7 @@
             justify-content: center; 
             align-items: center; 
 
-            /* Rotazione */
+            /* Rotazione applicata alla variabile */
             transform: rotate(var(--rotation-angle)); 
         }
 
@@ -84,12 +85,11 @@
         }
 
         #clock {
-            /* ⭐ AGGIORNATO: Nuovo font VT323 (stile sveglia retro) ⭐ */
-            font-family: 'VT323', monospace; 
+            /* ⭐ AGGIORNATO: Nuovo font 'Chakra Petch' ⭐ */
+            font-family: 'Chakra Petch', monospace; 
             font-size: var(--clock-size); 
             font-weight: 500; 
             letter-spacing: 0.1vw; 
-            /* Aggiunge spazio aggiuntivo per centrare meglio il font VT323 */
             line-height: 0.9; 
         }
 

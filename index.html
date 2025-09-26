@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget notion</title>
+    <title>Retro Clock Widget Notion </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&display=swap" rel="stylesheet">
+    
     <style>
         /* ==================================== */
         /* CONFIGURAZIONE BASE E COLORI        */
         /* ==================================== */
         :root {
-            /* ⭐ AGGIORNATO: Colore del display (testo) Rosa Chiaro ⭐ */
+            /* Colore del display (testo) */
             --display-color: #e6e6fa; 
-            /* ⭐ AGGIORNATO: Bagliore Rosa Caldo/Neon ⭐ */
+            /* Bagliore Rosa Caldo/Neon */
             --glow-color: #e6e6fa; 
             
-            /* ⭐ ROTAZIONE FINALE: -6.5 gradi (SENSO ORARIO) ⭐ */
-            --display-rotation-compensation: -6.5deg; 
+            /* ⭐ ROTAZIONE AGGIORNATA: -6.4 gradi (SENSO ORARIO) ⭐ */
+            --display-rotation-compensation: -6.4deg; 
             
             /* Dimensioni Font */
             --clock-size: 3em; 
@@ -22,8 +26,7 @@
             font-size: 16px; 
         }
 
-        /* Font Imports: Orbitron per look display digitale geometrico */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+        /* Import Noto Sans JP mantenuto per i saluti */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
 
         /* ==================================== */
@@ -87,24 +90,24 @@
         }
 
         /* ==================================== */
-        /* STILI TESTO (ROSA DIGITALE)          */
+        /* STILI TESTO (LUMINOSITÀ AGGIUNTA)    */
         /* ==================================== */
         .digitale-glow {
             color: var(--display-color); 
             line-height: 1;
             white-space: nowrap;
             text-align: center;
-            /* Bagliore morbido e rosato */
+            /* ⭐ AGGIORNATO: Bagliore aumentato con un terzo livello di ombra ⭐ */
             text-shadow:
                 0 0 5px var(--glow-color),
-                0 0 10px var(--glow-color);
+                0 0 10px var(--glow-color),
+                0 0 20px rgba(230, 230, 250, 0.7); /* Diffusione maggiore per luminosità */
         }
 
         #clock {
-            /* ⭐ AGGIORNATO: Font Orbitron per look digitale ⭐ */
-            font-family: 'Orbitron', monospace; 
+            /* ⭐ AGGIORNATO: Nuovo font Bitcount Single Ink ⭐ */
+            font-family: 'Bitcount Single Ink', monospace; 
             font-size: var(--clock-size); 
-            /* Peso Audace */
             font-weight: 800; 
             letter-spacing: 0.1vw; 
             line-height: 0.9; 
@@ -117,7 +120,7 @@
             margin-top: 0.1em;
             text-shadow: none; 
             opacity: 0.95; 
-            /* Colore del saluto coerente con il rosa */
+            /* Colore del saluto coerente */
             color: var(--glow-color);
         }
     </style>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget - Scalabile</title>
+    <title>Retro Clock Widget - Scalabile Perfetto</title>
     <style>
         /* CONFIGURAZIONE DI BASE E SCALATURA */
         :root {
@@ -9,11 +9,10 @@
             --glow-color: #ff3399;  
             --rotation-angle: -5.5deg;
             
-            /* ⭐ UNITA' SCALABILI (em): Saranno relative alla dimensione del genitore ⭐ */
-            --clock-size: 1.5em; 
-            --greeting-size: 0.5em; 
+            /* ⭐ AGGIORNATO: Dimensioni del testo finali in EM ⭐ */
+            --clock-size: 2em; 
+            --greeting-size: 1em; 
             
-            /* Definisce la dimensione base del font del BODY */
             font-size: 16px; 
         }
         
@@ -39,11 +38,10 @@
             left: 56.5%; 
             box-sizing: border-box;
             
-            /* ⭐ CHIAVE SCALABILITÀ: Usa vw per far scalare l'intero blocco in base alla viewport ⭐ */
+            /* Chiave di scalabilità */
             width: 35vw; 
             height: 35vh; 
             
-            /* Trasformazioni prospettiche */
             transform: 
                 translate(-50%, -50%) 
                 rotateX(6deg) 
@@ -53,15 +51,17 @@
                 translate(15vw, 15vh); 
         }
 
-        /* 2. AREA DEL DISPLAY (Ancoraggio e Centratura del Testo) */
+        /* 2. AREA DEL DISPLAY (Ancoraggio, Centratura e Posizionamento Finale) */
         #clock-display-area {
             position: absolute;
             
-            /* ⭐ CALIBRAZIONE SCALABILE: Usiamo % per far scalare la posizione/dimensione rispetto al genitore ⭐ */
-            width: 35%; 
-            height: 30%; 
-            top: 5%; 
-            left: 30%; 
+            /* Calibrazione dimensioni (possono essere affinate) */
+            width: 40%; 
+            height: 35%; 
+            
+            /* ⭐ AGGIORNATO: Posizionamento finale per centrare il testo ⭐ */
+            top: -3%; 
+            left: 20%; 
 
             /* Centramento del testo */
             display: flex;
@@ -96,7 +96,7 @@
             font-family: 'Noto Sans JP', sans-serif; 
             font-size: var(--greeting-size); 
             font-weight: 700; 
-            margin-top: 0.1em; /* Margine relativo alla dimensione del font */
+            margin-top: 0.1em;
             text-shadow: none; 
             opacity: 0.95; 
         }

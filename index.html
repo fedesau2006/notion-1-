@@ -1,178 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Widget Orologio Digitale Retro</title>
-    <style>
-        /* Variabili CSS (Centralizzate e complete per tweaking facile) */
-        :root {
-            --display-color: #ffe6f2; 
-            --glow-color: #ff3399;  
-            
-            /* ⭐ VALORI DI POSIZIONAMENTO (Finali) ⭐ */
-            --rotation-angle: -5.5deg;      
-            --offset-x: -5.5vw;             
-            --clock-offset-y: -14vh;        
-            --greeting-offset-y: -11.0vh;   
+    <title>Widget Orologio Digitale Retro</title>
+    <style>
+        /* Variabili CSS (Centralizzate e complete per tweaking facile) */
+        :root {
+            --display-color: #ffe6f2; 
+            --glow-color: #ff3399;  
+            
+            /* ⭐ VALORI DI POSIZIONAMENTO (Finali) ⭐ */
+            --rotation-angle: -5.5deg;      
+            --offset-x: -5.5vw;             
+            --clock-offset-y: -14vh;        
+            --greeting-offset-y: -11.0vh;   
 
-            /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
-            --clock-font-size: 3.5vw;
-            --greeting-font-size: 0.9vw;
+            /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
+            --clock-font-size: 3.5vw;
+            --greeting-font-size: 0.9vw;
 
-            /* ⭐ VALORI 3D GLOBALI (Invariati) ⭐ */
-            --perspective-value: 1000px; 
-            --rotateX-value: 6deg;      
-        }
-        
-        /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-        /* Importiamo un peso maggiore per Noto Sans JP se il 700 è disponibile */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+            /* ⭐ VALORI 3D GLOBALI (Invariati) ⭐ */
+            --perspective-value: 1000px; 
+            --rotateX-value: 6deg;      
+        }
+        
+        /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+        /* Importiamo un peso maggiore per Noto Sans JP se il 700 è disponibile */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
-        body {
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            background-image: url('https://github.com/fedesau2006/notion-1-/raw/main/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            perspective: var(--perspective-value); 
-        }
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-image: url('https://github.com/fedesau2006/notion-1-/raw/main/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            perspective: var(--perspective-value); 
+        }
 
-        .widget-container {
-            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE --- */
-            position: absolute;
-            top: 55%; 
-            left: 56.5%; 
-            box-sizing: border-box;
-            
-            /* Trasformazioni 3D/prospettiche */
-            transform: 
-                translate(-50%, -50%) 
-                rotateX(var(--rotateX-value)) 
-                rotateY(-3deg) 
-                skewX(7deg) 
-                scale(0.85) 
-                translate(15vw, 15vh); 
+        .widget-container {
+            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE --- */
+            position: absolute;
+            top: 55%; 
+            left: 56.5%; 
+            box-sizing: border-box;
+            
+            /* Trasformazioni 3D/prospettiche */
+            transform: 
+                translate(-50%, -50%) 
+                rotateX(var(--rotateX-value)) 
+                rotateY(-3deg) 
+                skewX(7deg) 
+                scale(0.85) 
+                translate(15vw, 15vh); 
 
-            /* Flexbox per centrare */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: auto;
-            height: auto;
-        }
+            /* Flexbox per centrare */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            height: auto;
+        }
 
-        .digitale-glow {
-            color: var(--display-color);
-            line-height: 1;
-            white-space: nowrap;
-            text-shadow:
-                1px 1px 0px rgba(0, 0, 0, 0.3), 
-                0 0 5px var(--glow-color),
-                0 0 15px var(--glow-color);
-        }
+        .digitale-glow {
+            color: var(--display-color);
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow:
+                1px 1px 0px rgba(0, 0, 0, 0.3), 
+                0 0 5px var(--glow-color),
+                0 0 15px var(--glow-color);
+        }
 
-        #clock {
-            font-family: 'Orbitron', monospace; 
-            font-size: var(--clock-font-size); 
-            font-weight: 500; 
-            letter-spacing: 0.1vw; 
-            
-            transform: 
-                rotate(var(--rotation-angle)) 
-                translate(var(--offset-x), var(--clock-offset-y)); 
-        }
+        #clock {
+            font-family: 'Orbitron', monospace; 
+            font-size: var(--clock-font-size); 
+            font-weight: 500; 
+            letter-spacing: 0.1vw; 
+            
+            transform: 
+                rotate(var(--rotation-angle)) 
+                translate(var(--offset-x), var(--clock-offset-y)); 
+        }
 
-        #greeting {
-            font-family: 'Noto Sans JP', sans-serif; 
-            font-size: var(--greeting-font-size); 
-            
-            /* ⭐ AGGIORNATO: Spessore maggiore per visibilità ⭐ */
-            font-weight: 700; 
-            
-            margin-top: 0; 
-            
-            transform: 
-                rotate(var(--rotation-angle)) 
-                translate(var(--offset-x), var(--greeting-offset-y)); 
+        #greeting {
+            font-family: 'Noto Sans JP', sans-serif; 
+            font-size: var(--greeting-font-size); 
+            
+            /* ⭐ AGGIORNATO: Spessore maggiore per visibilità ⭐ */
+            font-weight: 700; 
+            
+            margin-top: 0; 
+            
+            transform: 
+                rotate(var(--rotation-angle)) 
+                translate(var(--offset-x), var(--greeting-offset-y)); 
 
-            text-shadow: none; 
-            /* ⭐ AGGIORNATO: Opacità quasi piena per visibilità ⭐ */
-            opacity: 0.95; 
-        }
+            text-shadow: none; 
+            /* ⭐ AGGIORNATO: Opacità quasi piena per visibilità ⭐ */
+            opacity: 0.95; 
+        }
 
-        /* --- Media queries (Reattività) --- */
-        @media (max-width: 768px) {
-             :root {
-                 --clock-font-size: 6.5vw;
-                 --greeting-font-size: 1.8vw;
-             }
-        }
-    </style>
+        /* --- Media queries (Reattività) --- */
+        @media (max-width: 768px) {
+             :root {
+                 --clock-font-size: 6.5vw;
+                 --greeting-font-size: 1.8vw;
+             }
+        }
+    </style>
 </head>
 <body>
-    <div class="widget-container">
-        <div id="clock" class="digitale-glow"></div>
-        <div id="greeting" class="digitale-glow"></div>
-    </div>
+    <div class="widget-container">
+        <div id="clock" class="digitale-glow"></div>
+        <div id="greeting" class="digitale-glow"></div>
+    </div>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('it-IT', { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit', 
-                hour12: false
-            }).replace(/\./g, ':'); 
-            
-            document.getElementById('clock').textContent = timeString;
-        }
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('it-IT', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: false
+            }).replace(/\./g, ':'); 
+            
+            document.getElementById('clock').textContent = timeString;
+        }
 
-        function setGreetingAndNextInterval() {
-            const now = new Date();
-            const hour = now.getHours();
-            const greetingElement = document.getElementById('greeting');
-            let greetingText;
-            let nextHourChange;
-            
-            if (hour >= 5 && hour < 12) {
-                greetingText = 'おはようございます';
-                nextHourChange = 12;
-            } else if (hour >= 12 && hour < 18) {
-                greetingText = 'こんにちは';
-                nextHourChange = 18;
-            } else if (hour >= 18 && hour < 22) {
-                greetingText = 'こんばんは';
-                nextHourChange = 22;
-            } else {
-                greetingText = 'おやすみ';
-                nextHourChange = 24 + 5;
-            }
-            
-            greetingElement.textContent = greetingText;
+        function setGreetingAndNextInterval() {
+            const now = new Date();
+            const hour = now.getHours();
+            const greetingElement = document.getElementById('greeting');
+            let greetingText;
+            let nextHourChange;
+            
+            if (hour >= 5 && hour < 12) {
+                greetingText = 'おはようございます';
+                nextHourChange = 12;
+            } else if (hour >= 12 && hour < 18) {
+                greetingText = 'こんにちは';
+                nextHourChange = 18;
+            } else if (hour >= 18 && hour < 22) {
+                greetingText = 'こんばんは';
+                nextHourChange = 22;
+            } else {
+                greetingText = 'おやすみ';
+                nextHourChange = 24 + 5;
+            }
+            
+            greetingElement.textContent = greetingText;
 
-            const nextChangeTime = new Date(now);
-            if (nextHourChange > 23) {
-                nextChangeTime.setDate(now.getDate() + 1);
-                nextHourChange -= 24;
-            }
-            nextChangeTime.setHours(nextHourChange, 0, 5, 0); 
-            
-            const timeToWait = nextChangeTime.getTime() - now.getTime();
-            setTimeout(setGreetingAndNextInterval, timeToWait);
-        }
+            const nextChangeTime = new Date(now);
+            if (nextHourChange > 23) {
+                nextChangeTime.setDate(now.getDate() + 1);
+                nextHourChange -= 24;
+            }
+            nextChangeTime.setHours(nextHourChange, 0, 5, 0); 
+            
+            const timeToWait = nextChangeTime.getTime() - now.getTime();
+            setTimeout(setGreetingAndNextInterval, timeToWait);
+        }
 
-        function initWidget() {
-            setInterval(updateClock, 1000);
-            updateClock();
-            setGreetingAndNextInterval(); 
-        }
+        function initWidget() {
+            setInterval(updateClock, 1000);
+            updateClock();
+            setGreetingAndNextInterval(); 
+        }
 
-        initWidget();
-    </script>
+        initWidget();
+    </script>
 </body>
 </html>

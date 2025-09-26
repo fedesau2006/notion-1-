@@ -8,15 +8,19 @@
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
             
-            /* ⭐ VALORI DI POSIZIONAMENTO (Facilmente modificabili) ⭐ */
-            --rotation-angle: -6.0deg;      /* Rotazione antioraria */
-            --offset-x: -6.0vw;             /* Offset orizzontale per entrambi */
-            --clock-offset-y: -12vh;        /* Altezza ora (spostamento verso l'alto) */
-            --greeting-offset-y: -6.0vh;     /* Avvicinamento saluto (spostamento verso l'alto) */
+            /* ⭐ VALORI DI POSIZIONAMENTO AGGIORNATI ⭐ */
+            --rotation-angle: -6.0deg;      /* Rotazione antioraria (invariata) */
+            --offset-x: -6.0vw;             /* Offset orizzontale (invariato) */
+            --clock-offset-y: -14vh;        /* ⭐ NUOVO: Altezza ora a -14vh ⭐ */
+            --greeting-offset-y: -8.0vh;    /* ⭐ NUOVO: Avvicinamento saluto a -8vh ⭐ */
 
             /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
             --clock-font-size: 3.5vw;
             --greeting-font-size: 0.9vw;
+
+            /* ⭐ NUOVI VALORI 3D GLOBALI ⭐ */
+            --perspective-value: 1000px; /* Profondità/prospettiva */
+            --rotateX-value: 6deg;      /* Rotazione frontale (X-axis) */
         }
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
@@ -32,7 +36,8 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            perspective: 800px;
+            /* ⭐ AGGIORNATO: Profondità/prospettiva ⭐ */
+            perspective: var(--perspective-value); 
         }
 
         .widget-container {
@@ -45,7 +50,8 @@
             /* Trasformazioni 3D/prospettiche (raggruppate) */
             transform: 
                 translate(-50%, -50%) 
-                rotateX(4deg) 
+                /* ⭐ AGGIORNATO: Rotazione frontale (X-axis) ⭐ */
+                rotateX(var(--rotateX-value)) 
                 rotateY(-3deg) 
                 skewX(7deg) 
                 scale(0.85) 
@@ -70,14 +76,6 @@
                 0 0 15px var(--glow-color);
         }
 
-        /* ⭐ NUOVO: Classe per le trasformazioni comuni (Rotazione + Offset X) ⭐ */
-        .local-transform {
-             /* Applicata a #clock e #greeting per evitare ripetizioni */
-            transform: 
-                rotate(var(--rotation-angle)) 
-                translate(var(--offset-x), 0);
-        }
-
         #clock {
             font-family: 'Orbitron', monospace; 
             font-size: var(--clock-font-size); 
@@ -95,7 +93,6 @@
             font-size: var(--greeting-font-size); 
             font-weight: 400;
             
-            /* Rimosso margin-top (conflittuale) */
             margin-top: 0; 
             
             /* Unisce la trasformazione comune e l'offset Y specifico */
@@ -112,10 +109,7 @@
              :root {
                  --clock-font-size: 6.5vw;
                  --greeting-font-size: 1.8vw;
-                 /* mantenere gli offset in vh/vw (non-font) invariati */
              }
-             
-             /* Le trasformazioni rimangono le stesse grazie all'uso delle variabili */
         }
     </style>
 </head>
@@ -161,7 +155,6 @@
             
             greetingElement.textContent = greetingText;
 
-            // Calcola quando sarà la prossima modifica del saluto
             const nextChangeTime = new Date(now);
             if (nextHourChange > 23) {
                 nextChangeTime.setDate(now.getDate() + 1);
@@ -173,12 +166,8 @@
             setTimeout(setGreetingAndNextInterval, timeToWait);
         }
 
-        // ⭐ NUOVA FUNZIONE: Avvia tutto in modo pulito all'inizio ⭐
         function initWidget() {
-            // Aggiorna l'orologio ogni secondo
             setInterval(updateClock, 1000);
-            
-            // Imposta subito l'ora e il saluto, e programma la successiva modifica del saluto
             updateClock();
             setGreetingAndNextInterval(); 
         }

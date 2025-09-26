@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget - Trasparente e Rotazione 7.5°</title>
+    <title>Retro Clock Widget - Rotazione 7.5° Antioraria</title>
     <style>
         /* ==================================== */
         /* CONFIGURAZIONE BASE E COLORI        */
@@ -12,10 +12,10 @@
             /* Bagliore soft */
             --glow-color: #4dffff;
             
-            /* ⭐ AGGIORNATO: Rotazione Fissa a 7.5 gradi in senso ANTIORARIO ⭐ */
+            /* ⭐ ROTAZIONE FINALE: 7.5 gradi in SENSO ANTIORARIO (VALORE POSITIVO) ⭐ */
             --display-rotation-compensation: 7.5deg; 
             
-            /* Dimensioni Font (basate su 16px root) */
+            /* Dimensioni Font */
             --clock-size: 3em; 
             --greeting-size: 1em; 
             
@@ -33,7 +33,6 @@
             height: 100vh;
             margin: 0;
             position: relative;
-            /* Lo sfondo della sveglia sul tavolo */
             background-image: url('https://github.com/fedesau2006/notion-1-/raw/32181b9ff42405557af0d5b0aff64e4c238b2685/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
             background-size: cover;
             background-position: center center;
@@ -74,8 +73,8 @@
             top: -6%; 
             left: 14%; 
 
-            /* ⭐ CORREZIONE CRUCIALE: Assicuriamo totale trasparenza ⭐ */
-            background-color: transparent !important; /* Forza la trasparenza */
+            /* Sfondo trasparente */
+            background-color: transparent !important; 
             
             /* Centramento del testo */
             display: flex;

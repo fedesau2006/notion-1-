@@ -9,18 +9,18 @@
             --glow-color: #ff3399;  
             
             /* ⭐ VALORI DI POSIZIONAMENTO AGGIORNATI ⭐ */
-            --rotation-angle: -6.0deg;      /* Rotazione antioraria (invariata) */
-            --offset-x: -6.0vw;             /* Offset orizzontale (invariato) */
-            --clock-offset-y: -14vh;        /* ⭐ NUOVO: Altezza ora a -14vh ⭐ */
-            --greeting-offset-y: -8.0vh;    /* ⭐ NUOVO: Avvicinamento saluto a -8vh ⭐ */
+            --rotation-angle: -5.5deg;      /* ⭐ NUOVO: Rotazione antioraria a -5.5 gradi ⭐ */
+            --offset-x: -5.5vw;             /* ⭐ NUOVO: Offset orizzontale a -5.5vw (sposta leggermente a destra) ⭐ */
+            --clock-offset-y: -14vh;        /* Altezza ora (-14vh) invariata */
+            --greeting-offset-y: -11.0vh;   /* ⭐ NUOVO: Avvicinamento saluto a -11vh ⭐ */
 
             /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
             --clock-font-size: 3.5vw;
             --greeting-font-size: 0.9vw;
 
-            /* ⭐ NUOVI VALORI 3D GLOBALI ⭐ */
-            --perspective-value: 1000px; /* Profondità/prospettiva */
-            --rotateX-value: 6deg;      /* Rotazione frontale (X-axis) */
+            /* ⭐ VALORI 3D GLOBALI (Invariati) ⭐ */
+            --perspective-value: 1000px; 
+            --rotateX-value: 6deg;      
         }
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
@@ -36,7 +36,6 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            /* ⭐ AGGIORNATO: Profondità/prospettiva ⭐ */
             perspective: var(--perspective-value); 
         }
 
@@ -47,10 +46,9 @@
             left: 56.5%; 
             box-sizing: border-box;
             
-            /* Trasformazioni 3D/prospettiche (raggruppate) */
+            /* Trasformazioni 3D/prospettiche (invariate) */
             transform: 
                 translate(-50%, -50%) 
-                /* ⭐ AGGIORNATO: Rotazione frontale (X-axis) ⭐ */
                 rotateX(var(--rotateX-value)) 
                 rotateY(-3deg) 
                 skewX(7deg) 
@@ -82,7 +80,7 @@
             font-weight: 500; 
             letter-spacing: 0.1vw; 
             
-            /* Unisce la trasformazione comune e l'offset Y specifico */
+            /* Applica tutti i nuovi offset */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--offset-x), var(--clock-offset-y)); 
@@ -95,7 +93,7 @@
             
             margin-top: 0; 
             
-            /* Unisce la trasformazione comune e l'offset Y specifico */
+            /* Applica tutti i nuovi offset */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--offset-x), var(--greeting-offset-y)); 

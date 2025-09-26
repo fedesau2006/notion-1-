@@ -5,11 +5,12 @@
     <style>
         /* CONFIGURAZIONE DI BASE E SCALATURA */
         :root {
-            --display-color: #ffe6f2; 
-            --glow-color: #ff3399;  
+            /* ⭐ AGGIORNATO: Colore display più chiaro e morbido, glow meno intenso ⭐ */
+            --display-color: #f0f0f0; /* Bianco sporco / Grigio chiaro */
+            --glow-color: #ff99bb;    /* Rosa più tenue */
             
-            /* ⭐ AGGIORNATO: Rotazione rimossa (impostata a 0 gradi) ⭐ */
-            --rotation-angle: 0deg; 
+            /* ⭐ AGGIORNATO: Rotazione ANTIORARIA di 0.5 gradi ⭐ */
+            --rotation-angle: 0.5deg; 
             
             --clock-size: 3em; 
             --greeting-size: 1em; 
@@ -17,8 +18,8 @@
             font-size: 16px; 
         }
         
-        /* Font Imports: Chakra Petch per l'effetto inclinato/antico */
-        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
+        /* Font Imports: Press Start 2P per l'effetto sveglia/pixel */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
@@ -67,7 +68,7 @@
             justify-content: center; 
             align-items: center; 
 
-            /* Rotazione applicata alla variabile (ora 0deg) */
+            /* Rotazione applicata alla variabile */
             transform: rotate(var(--rotation-angle)); 
         }
 
@@ -84,11 +85,13 @@
         }
 
         #clock {
-            font-family: 'Chakra Petch', monospace; 
+            /* ⭐ AGGIORNATO: Nuovo font 'Press Start 2P' ⭐ */
+            font-family: 'Press Start 2P', monospace; 
             font-size: var(--clock-size); 
             font-weight: 500; 
             letter-spacing: 0.1vw; 
-            line-height: 0.9; 
+            /* Potrebbe essere necessario regolare leggermente line-height con questo font */
+            line-height: 1.1; 
         }
 
         #greeting {

@@ -16,7 +16,7 @@
             /* Bagliore Rosa Caldo/Neon */
             --glow-color: #e6e6fa; 
             
-            /* ⭐ ROTAZIONE AGGIORNATA: -6.4 gradi (SENSO ORARIO) ⭐ */
+            /* ROTAZIONE FINALE: -6.4 gradi (SENSO ORARIO) */
             --display-rotation-compensation: -6.4deg; 
             
             /* Dimensioni Font */
@@ -90,22 +90,21 @@
         }
 
         /* ==================================== */
-        /* STILI TESTO (LUMINOSITÀ AGGIUNTA)    */
+        /* STILI TESTO (BAGLIORE FINE)          */
         /* ==================================== */
         .digitale-glow {
             color: var(--display-color); 
             line-height: 1;
             white-space: nowrap;
             text-align: center;
-            /* ⭐ AGGIORNATO: Bagliore aumentato con un terzo livello di ombra ⭐ */
+            /* ⭐ AGGIORNATO: Diffusione del bagliore ridotta a 7px ⭐ */
             text-shadow:
                 0 0 5px var(--glow-color),
-                0 0 10px var(--glow-color),
-                0 0 20px rgba(230, 230, 250, 0.7); /* Diffusione maggiore per luminosità */
+                0 0 7px var(--glow-color), /* Ridotto da 10px a 7px */
+                0 0 7px rgba(230, 230, 250, 0.4); /* Opacità leggermente ridotta */
         }
 
         #clock {
-            /* ⭐ AGGIORNATO: Nuovo font Bitcount Single Ink ⭐ */
             font-family: 'Bitcount Single Ink', monospace; 
             font-size: var(--clock-size); 
             font-weight: 800; 

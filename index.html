@@ -7,11 +7,11 @@
         :root {
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
-            /* Nuovi valori definitivi */
-            --rotation-angle: -6.0deg; /* Rotazione antioraria a -6 gradi */
-            --clock-offset-y: -12vh; /* Altezza ora a -12vh */
-            --greeting-offset-y: -3.5vh; /* Nuova traslazione Y per avvicinare il saluto */
-            --local-offset-x: -6.0vw; 
+            /* ⭐ NUOVI VALORI DEFINITIVI RICHIESTI ⭐ */
+            --rotation-angle: -6.0deg;      /* Rotazione antioraria a -6 gradi */
+            --clock-offset-y: -12vh;       /* Altezza ora a -12vh */
+            --greeting-offset-y: -6.0vh;     /* Avvicinamento saluto a -6vh */
+            --local-offset-x: -6.0vw;      /* Offset orizzontale invariato */
         }
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
@@ -72,7 +72,7 @@
             font-weight: 500; 
             letter-spacing: 0.1vw; 
             
-            /* ✅ Ora: Rotazione a -6.0deg e Altezza a -12vh */
+            /* ✅ Rotazione a -6.0deg e Altezza a -12vh */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--local-offset-x), var(--clock-offset-y)); 
@@ -83,11 +83,10 @@
             font-size: 0.9vw; 
             font-weight: 400;
             
-            /* ❌ RIMOSSO margin-top per evitare conflitti. 
-               ✅ RISOLTO: Ora gestisco l'avvicinamento direttamente in translate Y. */
-            margin-top: 0; /* Rimuovo il margin-top che causava problemi */
+            /* Rimuovo il margin-top che causava problemi */
+            margin-top: 0; 
             
-            /* ✅ Saluto: Rotazione a -6.0deg e Avvicinato usando translate Y (-3.5vh) */
+            /* ✅ Rotazione a -6.0deg e Avvicinamento a -6.0vh (translateY) */
             transform: 
                 rotate(var(--rotation-angle)) 
                 translate(var(--local-offset-x), var(--greeting-offset-y)); 
@@ -106,7 +105,7 @@
              }
              #greeting { 
                  font-size: 1.8vw; 
-                 margin-top: 0; /* Rimosso anche qui */
+                 margin-top: 0; 
                  transform: 
                     rotate(var(--rotation-angle)) 
                     translate(var(--local-offset-x), var(--greeting-offset-y));

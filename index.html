@@ -8,16 +8,11 @@
             --display-color: #ffe6f2; 
             --glow-color: #ff3399;  
             
-            /* ⭐ VALORI DI POSIZIONAMENTO (Finali) ⭐ */
-            --rotation-angle: -5.5deg;      
-            --offset-x: -5.5vw;             
-            --clock-offset-y: -14vh;        
-            --greeting-offset-y: -11.0vh;   
-
-            /* ⭐ VALORI DI FONT (Centralizzati) ⭐ */
-            --clock-font-size: 3.5vw;
-            --greeting-font-size: 0.9vw;
-
+            /* ⭐ NUOVE VARIABILI PER LA SCALA E POSIZIONAMENTO FISSO ⭐ */
+            --rotation-angle: -5.5deg; /* La rotazione del testo sul display */
+            --clock-font-size-px: 19px; /* Dimensione fissa in pixel */
+            --greeting-font-size-px: 5px; /* Dimensione fissa in pixel */
+            
             /* ⭐ VALORI 3D GLOBALI (Invariati) ⭐ */
             --perspective-value: 1000px; 
             --rotateX-value: 6deg;      
@@ -25,10 +20,10 @@
         
         /* Font: Orbitron (digitale moderno) e Noto Sans JP (giapponese) */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-        /* Importiamo un peso maggiore per Noto Sans JP se il 700 è disponibile */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
         body {
+            /* Manteniamo body come contenitore dell'immagine */
             height: 100vh;
             margin: 0;
             padding: 0;
@@ -41,13 +36,13 @@
         }
 
         .widget-container {
-            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE --- */
+            /* --- POSIZIONAMENTO E TRASFORMAZIONE GLOBALE del WIDGET --- */
             position: absolute;
             top: 55%; 
             left: 56.5%; 
             box-sizing: border-box;
             
-            /* Trasformazioni 3D/prospettiche */
+            /* Trasformazioni 3D/prospettiche (Devono rimanere, scalano tutto) */
             transform: 
                 translate(-50%, -50%) 
                 rotateX(var(--rotateX-value)) 
@@ -56,13 +51,34 @@
                 scale(0.85) 
                 translate(15vw, 15vh); 
 
-            /* Flexbox per centrare */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            /* NON CENTRIAMO QUI, MA NEL NUOVO CONTENITORE DEL DISPLAY */
             width: auto;
             height: auto;
+        }
+
+        /* ⭐ NUOVO CONTENITORE PER FISSARE LA POSIZIONE DEL TESTO ⭐
+        Questo div agisce come il display del TV. Le sue dimensioni sono in pixel 
+        o in percentuale fissa, e la sua posizione è assoluta rispetto al widget-container.
+        */
+        #clock-display-area {
+            position: absolute;
+            /* Le misure e posizioni qui devono essere calibrate in base all'immagine */
+            width: 80px; /* Larghezza fissa del display (calibrare) */
+            height: 50px; /* Altezza fissa del display (calibrare) */
+            
+            /* Posizionamento ASSOLUTO rispetto al .widget-container */
+            top: 25px; /* Calibra finché non è sul display */
+            left: 50px; /* Calibra finché non è sul display */
+
+            /* Flexbox per centrare orizzontalmente e verticalmente il testo nel quadrante */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra verticalmente */
+            align-items: center; /* Centra orizzontalmente */
+
+            /* ⭐ APPLICA QUI LA TRASFORMAZIONE DI ROTAZIONE E TRASLAZIONE ⭐ */
+            transform: 
+                rotate(var(--rotation-angle)); /* Solo rotazione */
         }
 
         .digitale-glow {
@@ -73,50 +89,39 @@
                 1px 1px 0px rgba(0, 0, 0, 0.3), 
                 0 0 5px var(--glow-color),
                 0 0 15px var(--glow-color);
+            text-align: center; /* Assicurati che il testo sia centrato */
         }
 
         #clock {
             font-family: 'Orbitron', monospace; 
-            font-size: var(--clock-font-size); 
+            font-size: var(--clock-font-size-px); /* ⭐ USIAMO I PIXEL ⭐ */
             font-weight: 500; 
             letter-spacing: 0.1vw; 
-            
-            transform: 
-                rotate(var(--rotation-angle)) 
-                translate(var(--offset-x), var(--clock-offset-y)); 
+            /* RIMOZIONE DELLA TRASFORMAZIONE DI TRANSLATE */
+            transform: none; 
         }
 
         #greeting {
             font-family: 'Noto Sans JP', sans-serif; 
-            font-size: var(--greeting-font-size); 
-            
-            /* ⭐ AGGIORNATO: Spessore maggiore per visibilità ⭐ */
+            font-size: var(--greeting-font-size-px); /* ⭐ USIAMO I PIXEL ⭐ */
             font-weight: 700; 
-            
-            margin-top: 0; 
-            
-            transform: 
-                rotate(var(--rotation-angle)) 
-                translate(var(--offset-x), var(--greeting-offset-y)); 
-
+            margin-top: 2px; /* Piccolo margine per separare da #clock */
+            /* RIMOZIONE DELLA TRASFORMAZIONE DI TRANSLATE E ROTATE */
+            transform: none; 
             text-shadow: none; 
-            /* ⭐ AGGIORNATO: Opacità quasi piena per visibilità ⭐ */
             opacity: 0.95; 
         }
 
-        /* --- Media queries (Reattività) --- */
-        @media (max-width: 768px) {
-             :root {
-                 --clock-font-size: 6.5vw;
-                 --greeting-font-size: 1.8vw;
-             }
-        }
+        /* ⭐ RIMUOVENDO vw/vh, LE MEDIA QUERIES NON SONO PIÙ NECESSARIE PER LA SCALATURA del TESTO ⭐ */
+        /* Se vuoi che l'intero TV si ridimensioni su schermi piccoli, modifica lo 'scale(0.85)' nel .widget-container */
     </style>
 </head>
 <body>
     <div class="widget-container">
-        <div id="clock" class="digitale-glow"></div>
-        <div id="greeting" class="digitale-glow"></div>
+        <div id="clock-display-area"> 
+            <div id="clock" class="digitale-glow"></div>
+            <div id="greeting" class="digitale-glow"></div>
+        </div>
     </div>
 
     <script>

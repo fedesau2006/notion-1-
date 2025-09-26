@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Clock Widget - Finito Perfetto v3</title>
+    <title>Retro Clock Widget - Trasparente e Rotazione 7.5°</title>
     <style>
         /* ==================================== */
         /* CONFIGURAZIONE BASE E COLORI        */
         /* ==================================== */
         :root {
-            /* Colore display bianco acceso */
-            --display-color: #ffffff;
-            /* Blu-Verde Neon Intenso */
-            --glow-color: #00ffaa; 
+            /* Colore del display (testo) */
+            --display-color: #a3c2c2;
+            /* Bagliore soft */
+            --glow-color: #4dffff;
             
-            /* ⭐ AGGIORNATO: Rotazione Fissa a 5.5 gradi in senso ANTIORARIO ⭐ */
-            --display-rotation-compensation: 5.5deg; 
+            /* ⭐ AGGIORNATO: Rotazione Fissa a 7.5 gradi in senso ANTIORARIO ⭐ */
+            --display-rotation-compensation: 7.5deg; 
             
             /* Dimensioni Font (basate su 16px root) */
             --clock-size: 3em; 
@@ -22,17 +22,18 @@
             font-size: 16px; 
         }
 
-        /* Font Imports: Share Tech Mono per l'effetto LED moderno/sottile */
+        /* Font Imports */
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@500&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
 
         /* ==================================== */
-        /* BODY & SFONDO (IL TUO ORIGINALE)     */
+        /* BODY & SFONDO                        */
         /* ==================================== */
         body {
             height: 100vh;
             margin: 0;
             position: relative;
+            /* Lo sfondo della sveglia sul tavolo */
             background-image: url('https://github.com/fedesau2006/notion-1-/raw/32181b9ff42405557af0d5b0aff64e4c238b2685/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
             background-size: cover;
             background-position: center center;
@@ -62,7 +63,7 @@
         }
 
         /* ==================================== */
-        /* AREA DISPLAY (POSIZIONAMENTO)        */
+        /* AREA DISPLAY (CRUCIALE PER LA TRASPARENZA) */
         /* ==================================== */
         #clock-display-area {
             position: absolute;
@@ -73,33 +74,31 @@
             top: -6%; 
             left: 14%; 
 
-            /* ⭐ RIMOSSO: background-color e border-radius per una migliore integrazione ⭐ */
-
+            /* ⭐ CORREZIONE CRUCIALE: Assicuriamo totale trasparenza ⭐ */
+            background-color: transparent !important; /* Forza la trasparenza */
+            
             /* Centramento del testo */
             display: flex;
             flex-direction: column;
             justify-content: center; 
             align-items: center; 
 
-            /* Rotazione compensativa (5.5deg antiorario) */
+            /* Rotazione compensativa (7.5deg antiorario) */
             transform: rotate(var(--display-rotation-compensation)); 
         }
 
         /* ==================================== */
-        /* STILI TESTO (NEON AFFINATO)          */
+        /* STILI TESTO (BAGLIORE MORBIDO)      */
         /* ==================================== */
         .digitale-glow {
-            /* Colore primario più vicino al neon */
-            color: #ccffff; 
+            color: var(--display-color); 
             line-height: 1;
             white-space: nowrap;
             text-align: center;
-            /* Glow potenziato e ben definito */
+            /* Bagliore più tenue e meno diffuso */
             text-shadow:
                 0 0 5px var(--glow-color),
-                0 0 10px var(--glow-color),
-                0 0 20px var(--glow-color),
-                0 0 30px rgba(0, 255, 170, 0.6); /* Bagliore esterno più morbido */
+                0 0 10px var(--glow-color);
         }
 
         #clock {
@@ -117,7 +116,7 @@
             margin-top: 0.1em;
             text-shadow: none; 
             opacity: 0.95; 
-            /* Colore del saluto coerente con il neon */
+            /* Colore del saluto coerente */
             color: var(--glow-color);
         }
     </style>
@@ -149,7 +148,6 @@
             let greetingText;
             let nextHourChange;
             
-            // Logica dei saluti
             if (hour >= 5 && hour < 12) {
                 greetingText = 'おはようございます';
                 nextHourChange = 12;
@@ -166,7 +164,6 @@
             
             greetingElement.textContent = greetingText;
 
-            // Calcola il timeout per il prossimo cambio
             const nextChangeTime = new Date(now);
             if (nextHourChange > 23) {
                 nextChangeTime.setDate(now.getDate() + 1);

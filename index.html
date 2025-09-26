@@ -1,48 +1,69 @@
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-        font-family: 'Press Start 2P', monospace;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Press Start 2P', monospace;
+        }
 
-    /* Immagine di sfondo */
-    body {
-        background-image: url('https://github.com/fedesau2006/notion-1-/raw/main/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
+        /* Immagine di sfondo */
+        body {
+            background-image: url('https://github.com/fedesau2006/notion-1-/raw/main/Gemini_Generated_Image_bhgvoxbhgvoxbhgv.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
 
-    #clock {
-        position: relative;
-        text-align: center;
-        width: 100%;
-        color: #00FF00; /* Colore verde neon */
-        font-size: 5vh;
-        text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00; /* Effetto illuminato */
-    }
-
-    #greeting {
-        position: relative;
-        text-align: center;
-        color: #00FF00;
-        font-size: 2.5vh;
-        text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00;
-    }
-
-    @media (max-width: 600px) {
         #clock {
-            font-size: 4vh;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            color: #00FF00; /* Colore verde neon */
+            font-size: 5vh;
+            text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00; /* Effetto illuminato */
         }
+
         #greeting {
-            font-size: 2vh;
+            position: relative;
+            text-align: center;
+            color: #00FF00;
+            font-size: 2.5vh;
+            text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00;
         }
-    }
-</style>
+
+        @media (max-width: 600px) {
+            #clock {
+                font-size: 4vh;
+            }
+            #greeting {
+                font-size: 2vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+    <div id="greeting">おはよう</div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours.toString().padStart(2, '0')}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
